@@ -35,28 +35,28 @@ Vagrant.configure("2") do |config|
   config.vm.define "centos7" do |centos7|
     centos7.vm.box = "puppetlabs/centos-7.2-64-nocm"
     centos7.vm.provision :shell, :path => "../puppet-bootstrap/centos_7_x.sh"
-    centos5.vm.provision "puppet", type:"puppet"
+    centos7.vm.provision "puppet", type:"puppet"
   end
 
   # Debian-6
   config.vm.define "debian6" do |debian6|
     debian6.vm.box = "puppetlabs/debian-6.0.10-64-nocm"
     debian6.vm.provision :shell, :path => "../puppet-bootstrap/debian.sh"
-    centos5.vm.provision "puppet", type:"puppet"
+    debian6.vm.provision "puppet", type:"puppet"
   end
 
   # Debian-7
   config.vm.define "debian7" do |debian7|
     debian7.vm.box = "puppetlabs/debian-7.8-64-nocm"
     debian7.vm.provision :shell, :path => "../puppet-bootstrap/debian.sh"
-    centos5.vm.provision "puppet", type:"puppet"
+    debian7.vm.provision "puppet", type:"puppet"
   end
 
   # Debian-8
   config.vm.define "debian8" do |debian8|
     debian8.vm.box = "puppetlabs/debian-8.2-64-nocm"
     debian8.vm.provision :shell, :path => "../puppet-bootstrap/debian.sh"
-    centos5.vm.provision "puppet", type:"puppet"
+    debian8.vm.provision "puppet", type:"puppet"
   end
 
 end
