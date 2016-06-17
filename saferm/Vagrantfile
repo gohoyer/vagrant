@@ -3,48 +3,60 @@
 
 Vagrant.configure("2") do |config|
 
+  ######################
+  # PROVISIONER DEFAULTS
+  ######################
+  # Puppet Provisioner setup
+  config.vm.provision "puppet", type:"puppet" do |puppet|
+    puppet.manifests_path = "./"
+    puppet.module_path    = "../../puppet/"
+    puppet.manifest_file  = "site.pp"
+    puppet.options = "--debug --verbose"
+  end
+
+  ##########
+  # MACHINES
+  ##########
   # CentOS-5
   config.vm.define "centos5" do |centos5|
     centos5.vm.box = "puppetlabs/centos-5.11-64-nocm"
     centos5.vm.provision :shell, :path => "../puppet-bootstrap/centos_5_x.sh"
+    centos5.vm.provision "puppet", type:"puppet"
   end
 
   # CentOS-6
   config.vm.define "centos6" do |centos6|
     centos6.vm.box = "puppetlabs/centos-6.6-64-nocm"
     centos6.vm.provision :shell, :path => "../puppet-bootstrap/centos_6_x.sh"
+    centos6.vm.provision "puppet", type:"puppet"
   end
 
   # CentOS-7
   config.vm.define "centos7" do |centos7|
     centos7.vm.box = "puppetlabs/centos-7.2-64-nocm"
     centos7.vm.provision :shell, :path => "../puppet-bootstrap/centos_7_x.sh"
+    centos5.vm.provision "puppet", type:"puppet"
   end
 
   # Debian-6
   config.vm.define "debian6" do |debian6|
     debian6.vm.box = "puppetlabs/debian-6.0.10-64-nocm"
     debian6.vm.provision :shell, :path => "../puppet-bootstrap/debian.sh"
+    centos5.vm.provision "puppet", type:"puppet"
   end
 
   # Debian-7
   config.vm.define "debian7" do |debian7|
     debian7.vm.box = "puppetlabs/debian-7.8-64-nocm"
     debian7.vm.provision :shell, :path => "../puppet-bootstrap/debian.sh"
+    centos5.vm.provision "puppet", type:"puppet"
   end
 
   # Debian-8
   config.vm.define "debian8" do |debian8|
     debian8.vm.box = "puppetlabs/debian-8.2-64-nocm"
     debian8.vm.provision :shell, :path => "../puppet-bootstrap/debian.sh"
-  end
-
-  # Puppet Provisioner setup
-  config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "./"
-    puppet.module_path    = "../../puppet/"
-    puppet.manifest_file  = "site.pp"
-    puppet.options = "--debug --verbose"
+    centos5.vm.provision "puppet", type:"puppet"
   end
 
 end
