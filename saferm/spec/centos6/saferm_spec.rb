@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-print "##############\nCENTOS-6\n############"
+print "##############\nCENTOS-6\n##############"
 
 describe file('/etc/safe-rm.conf') do
   it {
