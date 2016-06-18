@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+print "##############\nDEBIAN-7\n##############"
+
 describe package('safe-rm'), :if => os[:family] == 'debian' do
   it { should be_installed }
 end

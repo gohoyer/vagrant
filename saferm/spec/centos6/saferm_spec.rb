@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+print "##############\nCENTOS-6\n############"
+
 describe file('/etc/safe-rm.conf') do
   it {
     should be_file

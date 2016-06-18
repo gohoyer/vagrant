@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+print "##############\nCENTOS-7\n##############"
+
 describe file('/etc/safe-rm.conf') do
   it {
     should be_file
@@ -14,6 +16,6 @@ describe file('/usr/bin/safe-rm') do
     should exist
   }
 end
-describe command('/usr/bin/safe-rm /bin') do
+describe command('/usr/bin/safe-rm /dev') do
   its(:stderr) { should match('skipping') }
 end
